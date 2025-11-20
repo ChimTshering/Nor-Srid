@@ -44,6 +44,7 @@
     "react-native": "0.81.4",
     "react-native-date-picker": "^5.0.13",
     "react-native-gesture-handler": "~2.28.0",
+    "react-native-keyboard-controller": "1.18.5",
     "react-native-nitro-modules": "^0.31.8",
     "react-native-nitro-toast": "^1.2.6",
     "react-native-reanimated": "~4.1.1",

@@ -3,7 +3,7 @@ import { ThemeProvider, useTheme } from "@rneui/themed";
 import { Stack } from "expo-router";
 import { SQLiteDatabase, SQLiteProvider } from "expo-sqlite";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-
+import { KeyboardProvider } from "react-native-keyboard-controller";
 export default function RootLayout() {
   const { theme } = useTheme();
   const CreateDatabase = async(db:SQLiteDatabase)=>{
@@ -32,9 +32,11 @@ export default function RootLayout() {
   }
   
   return (
-		<SQLiteProvider databaseName={process.env.EXPO_PUBLIC_DB_NAME!} 
-		options={{useNewConnection: false}}
-    onInit={CreateDatabase}>
+		<SQLiteProvider
+			databaseName={process.env.EXPO_PUBLIC_DB_NAME!}
+			options={{ useNewConnection: false }}
+			onInit={CreateDatabase}
+		>
 			<SafeAreaProvider>
 				<SafeAreaView
 					style={{
@@ -43,10 +45,12 @@ export default function RootLayout() {
 					}}
 				>
 					<ThemeProvider theme={{ ...theme, ...customTheme }}>
-						<Stack>
-							<Stack.Screen options={{ headerShown: false }} name='index' />
-							<Stack.Screen options={{ headerShown: false }} name='(tab)' />
-						</Stack>
+						<KeyboardProvider>
+							<Stack>
+								<Stack.Screen options={{ headerShown: false }} name='index' />
+								<Stack.Screen options={{ headerShown: false }} name='(tab)' />
+							</Stack>
+						</KeyboardProvider>
 					</ThemeProvider>
 				</SafeAreaView>
 			</SafeAreaProvider>
